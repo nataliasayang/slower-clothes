@@ -7,9 +7,16 @@
                 {{ post.published_date }}
             </div>
         {% endif %}
+        {% if user.is_authenticated %}
+          <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+        {% endif %}
         <h2>{{ post.company_name }}</h2>
         <p><a href="{{ post.website }}">{{ post.website }}</a></p>
+        <p>{{ post.focus|linebreaksbr }}</p>
         <p>{{ post.text|linebreaksbr }}</p>
-        <p>{{ post.tags|linebreaksbr }}</p>
+        <p>Made in {{ post.made_in|linebreaksbr }}</p>
+        <p>Based in {{ post.based_in|linebreaksbr }}</p>
+        <p>${{ post.low_price }}-{{ post.high_price }}</p>
+        <p class="tags"><i>{{ post.tags|linebreaksbr }}</i></p>
     </div>
 {% endblock %}
