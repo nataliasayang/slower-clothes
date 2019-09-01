@@ -4,7 +4,7 @@
     <div class="post">
         {% if post.published_date %}
             <div class="date">
-                {{ post.published_date }}
+                First published {{ post.created_date|date:"M d, Y" }}
             </div>
         {% endif %}
         {% if user.is_authenticated %}
@@ -18,5 +18,8 @@
         <p>Based in {{ post.based_in|linebreaksbr }}</p>
         <p>${{ post.low_price }}-{{ post.high_price }}</p>
         <p class="tags"><i>{{ post.tags|linebreaksbr }}</i></p>
+    </div>
+    <div class="date">
+        Last updated {{ post.published_date|date:"M d, Y" }}
     </div>
 {% endblock %}
