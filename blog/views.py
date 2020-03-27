@@ -19,6 +19,10 @@ def post_detail(request, pk):
 def about_page(request):
     return render(request, 'blog/about.html')
 
+def women_brands(request):
+    posts = Post.objects.filter(published_date__lte=timezone.now()).filter(tags__search='Women').order_by('published_date')
+    return render(request, 'blog/post_list.html', {'posts': posts})
+
 @login_required
 def post_new(request):
     if request.method == "POST":
