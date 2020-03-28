@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 
 import os
 import dj_database_url
+from dotenv import load_dotenv
+load_dotenv()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -21,11 +23,16 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-with open('mysite/sc_keys/secret_key.txt') as f:
-    SECRET_KEY = f.read().strip()
+# with open('mysite/sc_keys/secret_key.txt') as f:
+#    SECRET_KEY = f.read().strip()
+# SECRET_KEY = os.environ['secret_key']
+SECRET_KEY = os.getenv('secret_key')
 
-with open('mysite/sc_keys/postgres_pw.txt') as g:
-    POSTGRES_PW = g.read().strip()
+
+# with open('mysite/sc_keys/postgres_pw.txt') as g:
+#    POSTGRES_PW = g.read().strip()
+# POSTGRES_PW = os.environ['postgres_pw']
+POSTGRES_PW = os.getenv('postgres_pw')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
