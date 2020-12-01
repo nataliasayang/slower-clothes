@@ -15,9 +15,13 @@ class Post(models.Model):
     tags = models.CharField(max_length=200)
     created_date = models.DateTimeField(default=timezone.now)
     published_date = models.DateTimeField(blank=True, null=True)
-    image1_url = models.CharField(max_length=200, default='default_1.jpg')
-    image2_url = models.CharField(max_length=200, default="default_1.jpg")
-    # picture = models.ImageField(default='default_1.jpg')
+#    image1_url = models.CharField(max_length=200, default='default_1.jpg')
+#    image2_url = models.CharField(max_length=200, default="default_1.jpg")
+    image = models.FileField(blank=True)
+
+class PostImage(models.Model):
+    post = models.ForeignKey(Post, default=None, on_delete=models.CASCADE)
+    images = models.FileField(upload_to = 'images/')
 
     def publish(self):
         self.published_date = timezone.now()
